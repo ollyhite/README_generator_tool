@@ -1,11 +1,11 @@
 // TODO: Include packages needed for this application
 const inquirer = require("inquirer");
 const fs = require("fs");
-const { response } = require("express");
+const generateMarkdown = require("./utils/generateMarkdown");
 // TODO: Create an array of questions for user input
 const allAnswer ={};
 const secondRoundQuestionArray =[];
-const questions = [
+const allQuestions = [
     {
         type:"input",
         message:" What's your project name? ",
@@ -83,6 +83,7 @@ const questions = [
         name:'tests'
     }
 ];
+
 const startQuestions =[
     {
         type:"input",
@@ -212,7 +213,7 @@ function secondRoundQuestion(questions) {
         // console.log(response);
         const newallAnswer = Object.assign(allAnswer,response);
         console.log("second newallAnswer",allAnswer);
-    //  writeToFile("README.md", response)
+        writeToFile("README.md", newallAnswer)
     })
 }
 // inquirer.prompt(questions).then((response) =>{
@@ -221,19 +222,21 @@ function secondRoundQuestion(questions) {
 // })
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    console.log("fileName", fileName);
+    // console.log("fileName", fileName);
     console.log("data", data);
+    const readmeinfo = generateMarkdown(data);
     // Function call to initialize app
-    init(data);
-}
-
-// TODO: Create a function to initialize app
-function init(data) {
-    const template = data;
-    fs.writeFile('README.md', template, (err) => {
+    // init(data);
+    fs.writeFile(fileName, readmeinfo, (err) => {
         err? console.log(err):console.log("created success README file!!!!");
     })
 }
+
+// TODO: Create a function to initialize app
+// function init(data) {
+//     const template = data;
+    
+// }
 
 
 startQuestion();
