@@ -14,7 +14,6 @@ module.exports = (data) => {
 
     for (let i = 0; i < data.contents.length; i++) {
         // const element = data.contents[i];
-
         templateContents +=
         `
         \n - ${data.contents[i]}
@@ -28,7 +27,6 @@ module.exports = (data) => {
     \`\`\` git clone  ${data.clone} \`\`\`
 
     - ${data.installation}
-
     `
 
 

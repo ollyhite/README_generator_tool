@@ -1,24 +1,41 @@
+# readme maker 
 
-        # olly
+    ## Description 
 
-    ## Description
-
-    vsdfhh
-    xvsw
-    dvbh 
-    sdswe
-
+    want to make readme file more easy.
+    I want to make earylier to my all project.
+    export and import file proble. 
+    learn more codin skill.
     
-        ## Table of Contents
+ ## Table of Contents 
+
         
  - Installation
         
         
-    ## Installation
+ - Usage
+        
+        
+ - Credits
+        
+        
+ - Built_With
+        
+        
+ - API_Resources
+        
+ ## Installation 
+ ``` git clone  ${data.clone} ``` 
+["git clone in the file", "open terminal", "cd your file name", "cd in the ream_fen gile", "npm i
+ ## Usage 
 
-    ``` git clone  rth ```
-
-    - asdasd
-
+    dsjhflskjhf
     
+ ## Credits 
+
+    ["olly", "Addi", "Jason"]
     
+ ## Built With 
+["js", "node,js"]
+ ## API_Resources 
+["npmjs-inquirer", "npm i"]
