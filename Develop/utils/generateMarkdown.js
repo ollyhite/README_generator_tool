@@ -1,5 +1,6 @@
 // //import template.js in here and use module.exports export out
 //const template = require("./template")
+const licenseTemplate = require("./license_template");
 
 function templateHeater(data) {
   return `
@@ -16,6 +17,11 @@ function templateContents(data){
         `
     }
     return templateContents;
+}
+function templateLiveLink(data){
+  return `
+    \n ## Live link \n ${data.live}
+    `
 }
 function templateInstallation(data){
   let templateInstallation ="\n ## Installation \n"
@@ -128,6 +134,10 @@ function templateTests(data){
       return templateTests + data.tests;
     }
 }
+
+function templateLicense(data){
+  return `\n ${licenseTemplate(data.license, data.licenseYear, data.licenseName)} \n`
+}
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {}
@@ -146,6 +156,7 @@ function generateMarkdown(data) {
   // let currentTemplate = template(data);
   // return currentTemplate;
   return `
+  ${data.contents.includes("Live_link") ? templateLiveLink(data): ""}
   ${templateHeater(data)}
   ${templateContents(data)} 
   ${data.contents.includes("Installation") ? templateInstallation(data): ""}
@@ -157,6 +168,7 @@ function generateMarkdown(data) {
   ${data.contents.includes("Features") ? templateFeatures: ""}
   ${data.contents.includes("How_to_Contribute") ? templateContribute(data): ""}
   ${data.contents.includes("Tests") ? templateTests(data): ""}
+  ${data.contents.includes("License") ? templateLicense(data): ""}
   `
 }
 

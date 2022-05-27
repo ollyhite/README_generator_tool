@@ -112,13 +112,30 @@ const startQuestions =[
     },
     {
         type:"checkbox",
-        message:"Table of Contents - Choose which section you going to put info?",
-        choices:["Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+        message:"Table of Contents - Choose section(s) you want to put in your README file.",
+        choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
         name:'contents'
-    }
+    },
+    // {
+    //     type:"checkbox",
+    //     message:"List in README file - Choose section(s) you want to put in your README file.",
+    //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+    //     name:'list'
+    // },
 ]
 
 const contentsQuestion ={
+    Live_link:{
+        type:"input",
+        message:"Live link - Enter your project's live link.",
+        name:'live'
+    },
+    // Contents:{
+    //     type:"checkbox",
+    //     message:"Table of Contents - Choose section(s) you want to put in your README file.",
+    //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+    //     name:'contents'
+    // },
     Installation:
     [{
         type:"input",
@@ -177,7 +194,24 @@ const contentsQuestion ={
         type:"input",
         message:"Tests - Go the extra mile and write tests for your application. Then provide examples on how to run them in array. If you don't need just return blank answer",
         name:'tests'
+    },
+    License:[{
+        type:'rawlist',
+        message: "License - The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/].",
+        name:"license",
+        choices:["MIT License - I want it simple and permissive","GNU Lesser General Public License - I care about sharing improvements."]
+    },
+    {
+        type:"input",
+        message:"License - The year of your project create",
+        name:'licenseYear'
+    },
+    {
+        type:"input",
+        message:"License - The year of your project name",
+        name:'licenseName'
     }
+    ]
 }
 
 const startQuestion = () =>{
