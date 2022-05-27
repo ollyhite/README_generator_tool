@@ -2,150 +2,131 @@
 //const template = require("./template")
 
 function templateHeater(data) {
-  return `# ${data.projectTitle} \n
-    ## Description \n
-    ${data.motivation}${data.descriptionWhy}${data.descriptionProblem}${data.descriptionLearn}
+  return `
+    \n # ${data.projectTitle} \n ## Description \n ${data.motivation}${data.descriptionWhy}${data.descriptionProblem}${data.descriptionLearn}
     `
 }
 function templateContents(data){
   let templateContents= "\n ## Table of Contents \n";
-  console.log(data.contents);
     for (let i = 0; i < data.contents.length; i++) {
-        // const element = data.contents[i];
+        let lowercase = data.contents[i].toLowerCase()
         templateContents +=
         `
-        \n - [${data.contents[i]}](#${data.contents[i]}.name)
+        \n - [${data.contents[i]}](#${lowercase})
         `
     }
-    console.log("templateContents",templateContents);
     return templateContents;
 }
 function templateInstallation(data){
-  let templateInstallation ="\n ## Installation \n \`\`\` git clone  ${data.clone} \`\`\` \n"
-  if(data.contents.includes("Installation")){
-    if(Array.isArray(data.installation)){
-      for (let i = 0; i < data.installation.length; i++) {
+  let templateInstallation ="\n ## Installation \n"
+    let installArray = JSON.parse(data.installation);
+    if(Array.isArray(installArray)){
+      console.log("data.installation is arry");
+      templateInstallation += `\`\`\` \n git clone  ${data.clone} \n \`\`\``;
+
+      for (let i = 0; i < installArray.length; i++) {
       templateInstallation +=
       `
-      \n - ${data.installation[i]}
+      \n - ${installArray[i]}
       `
       }
       return templateInstallation;
     }else{
+      console.log("data.installation is not arry");
       return templateInstallation + data.installation;
     }
-  }else{
-    return ""
-  }
 }
 
 function templateUsage(data){
-  if(data.contents.includes("Usage")){
-    return `\n ## Usage \n
-
-    \`\`\`md
-    ![alt text](${data.usage})
-    \`\`\`
+    return `
+    \n ## Usage \n ![alt text](${data.usage})
     `
-  }else{
-    return ""
-  }
 }
 
 function templateCredits(data){
-  if(data.contents.includes("Credits")){
-    return `\n ## Credits \n
-    ${data.credits}
-    `
-  }else{
-    return ""
-  }
+  let templateCredits = "`\n ## Credits \n"
+    let creditsArray = JSON.parse(data.credits);
+    if(Array.isArray(creditsArray)){
+      for (let i = 0; i < creditsArray.length; i++) {
+        templateCredits +=
+        `
+        \n - ${creditsArray[i]}
+        `
+      }
+      return templateCredits
+    }else{
+      return templateCredits + data.credits;
+    }
 }
 
 function templateBuiltWith(data){
   let templateBuiltWith = "\n ## Built With \n"
-  if(data.contents.includes("Built_With")){
-    if(Array.isArray(data.built)){
-      for (let i = 0; i < data.built.length; i++) {
-        templateBuiltWith+=
+    let builtArray = JSON.parse(data.built)
+    if(Array.isArray(builtArray)){
+      for (let i = 0; i < builtArray.length; i++) {
+        templateBuiltWith +=
         `
-        \n - ${data.built[i]}
+        \n - ${builtArray[i]}
         `
       }
       return templateBuiltWith
     }else{
       return templateBuiltWith + data.built;
     }
-  }else{
-    return ""
-  }
 }
 function templateApiResources(data){
   let templateApiResources = "\n ## API_Resources \n"
-  if(data.contents.includes("API_Resources")){
-    if(Array.isArray(data.api)){
-      for (let i = 0; i < data.api.length; i++) {
-        templateApiResources+=
+    let apiArray = JSON.parse(data.api)
+    if(Array.isArray(apiArray)){
+      for (let i = 0; i < apiArray.length; i++) {
+        templateApiResources +=
         `
-        \n - ${data.api[i]}
+        \n - ${apiArray[i]}
         `
       }
       return templateApiResources
     }else{
       return templateApiResources + data.api;
     }
-  }else{
-    return ""
-  }
 }
 
 function templateBadges(data){
-  if(data.contents.includes("Badges")){
-    return `\n ## Badges \n
-      ${data.badges}
+    return `
+    \n ## Badges \n ${data.badges}
     `
-  }else{
-    return ""
-  }
 }
 
 function templateFeatures(data){
-  if(data.contents.includes("Features")){
-    return `\n ## Features \n
-      ${data.features}
+    return `
+    \n ## Features \n ${data.features}
     `
-  }else{
-    return ""
-  }
 }
 
 function templateContribute(data){
-  if(data.contents.includes("Contribute")){
-    return `\n ## How to Contribute \n
-      ${data.contribute}
+    return `
+    \n ## How to Contribute \n ${data.contribute}
     `
-  }else{
-    return ""
-  }
 }
 
 function templateTests(data){
   let templateTests = "\n ## Tests \n"
-  if(data.contents.includes("Tests")){
-    if(Array.isArray(data.tests)){
-      for (let i = 0; i < data.tests.length; i++) {
-        templateTests+=
+    let testArray = JSON.parse(data.tests)
+      // console.log(JSON.parse(data.tests));
+    if(Array.isArray(JSON.parse(data.tests))){
+      // console.log("templateTests is array");
+      // let testArray = JSON.parse(data.tests)
+      for (let i = 0; i < testArray.length; i++) {
+        templateTests +=
         `
-        \n - ${data.tests[i]}
+        \n - ${testArray[i]}
         `
       }
       return templateTests
     }else{
+      // console.log(JSON.parse(data.tests));
+      // console.log("templateTests is not array");
       return templateTests + data.tests;
     }
-  }else{
-    return ""
-  }
 }
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
@@ -161,15 +142,22 @@ function renderLicenseSection(license) {}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
+  // //if you use template.js to export data
   // let currentTemplate = template(data);
-    let currentTemplate = templateHeater(data) + templateContents(data) + templateInstallation(data)
-    + templateUsage(data) + templateCredits(data) +templateBuiltWith(data)+templateApiResources(data) + templateBadges(data) + templateFeatures(data) + templateContribute(data) + templateTests(data);
-    ;
-  // data.contents.includes("Installation")?templateHeater(data):""
-  // let currentHeater = templateHeater(data);
-  // return `# ${data.title}
-  return currentTemplate;
-
+  // return currentTemplate;
+  return `
+  ${templateHeater(data)}
+  ${templateContents(data)} 
+  ${data.contents.includes("Installation") ? templateInstallation(data): ""}
+  ${data.contents.includes("Usage") ? templateUsage(data): ""}
+  ${data.contents.includes("Credits") ? templateCredits(data): ""}
+  ${data.contents.includes("Built_With") ? templateBuiltWith(data): ""}
+  ${data.contents.includes("Api_Resources") ? templateApiResources(data): ""}
+  ${data.contents.includes("Badges") ? templateBadges(data): ""}
+  ${data.contents.includes("Features") ? templateFeatures: ""}
+  ${data.contents.includes("How_to_Contribute") ? templateContribute(data): ""}
+  ${data.contents.includes("Tests") ? templateTests(data): ""}
+  `
 }
 
 module.exports = generateMarkdown;

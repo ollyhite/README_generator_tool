@@ -183,13 +183,13 @@ const contentsQuestion ={
 const startQuestion = () =>{
     inquirer.prompt(startQuestions).then((answer)=>{
         const newallAnswer= Object.assign(allAnswer,answer);
-        console.log("first newallAnswer",allAnswer);
+        // console.log("first newallAnswer",allAnswer);
         // console.log("answer.contents",answer.contents);
         for (let i = 0; i < answer.contents.length; i++) {
             const element = answer.contents[i];
             // console.log("element",element);
             for (const key in contentsQuestion) {
-                console.log("key in contentsQuestion",key);
+                // console.log("key in contentsQuestion",key);
                 if(answer.contents[i]===key){
                     if(Array.isArray(contentsQuestion[key])){
                         // console.log("is arry");
