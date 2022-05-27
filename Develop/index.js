@@ -113,7 +113,7 @@ const startQuestions =[
     {
         type:"checkbox",
         message:"Table of Contents - Choose section(s) you want to put in your README file.",
-        choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+        choices:["Live_link", "Table_of_Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
         name:'contents'
     },
     // {
@@ -130,7 +130,7 @@ const contentsQuestion ={
         message:"Live link - Enter your project's live link.",
         name:'live'
     },
-    // Contents:{
+    // Table_of_Contents:{
     //     type:"checkbox",
     //     message:"Table of Contents - Choose section(s) you want to put in your README file.",
     //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],

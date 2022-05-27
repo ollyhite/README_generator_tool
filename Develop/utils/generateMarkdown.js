@@ -25,9 +25,8 @@ function templateLiveLink(data){
 }
 function templateInstallation(data){
   let templateInstallation ="\n ## Installation \n"
-    let installArray = JSON.parse(data.installation);
-    if(Array.isArray(installArray)){
-      console.log("data.installation is arry");
+    if(data.installation.includes("[")){
+      let installArray = JSON.parse(data.installation)
       templateInstallation += `\`\`\` \n git clone  ${data.clone} \n \`\`\``;
 
       for (let i = 0; i < installArray.length; i++) {
@@ -37,9 +36,9 @@ function templateInstallation(data){
       `
       }
       return templateInstallation;
-    }else{
-      console.log("data.installation is not arry");
-      return templateInstallation + data.installation;
+    }
+    else{
+      return `${templateInstallation} \n ${data.installation}`;
     }
 }
 
@@ -51,8 +50,8 @@ function templateUsage(data){
 
 function templateCredits(data){
   let templateCredits = "`\n ## Credits \n"
-    let creditsArray = JSON.parse(data.credits);
-    if(Array.isArray(creditsArray)){
+    if(data.credits.includes("[")){
+      let creditsArray = JSON.parse(data.credits);
       for (let i = 0; i < creditsArray.length; i++) {
         templateCredits +=
         `
@@ -61,14 +60,14 @@ function templateCredits(data){
       }
       return templateCredits
     }else{
-      return templateCredits + data.credits;
+      return `${templateCredits} \n ${data.credits}`;
     }
 }
 
 function templateBuiltWith(data){
   let templateBuiltWith = "\n ## Built With \n"
-    let builtArray = JSON.parse(data.built)
-    if(Array.isArray(builtArray)){
+    if(data.built.includes("[")){
+      let builtArray = JSON.parse(data.built)
       for (let i = 0; i < builtArray.length; i++) {
         templateBuiltWith +=
         `
@@ -77,13 +76,13 @@ function templateBuiltWith(data){
       }
       return templateBuiltWith
     }else{
-      return templateBuiltWith + data.built;
+      return `${templateBuiltWith} \n ${data.built}`;
     }
 }
 function templateApiResources(data){
   let templateApiResources = "\n ## API_Resources \n"
-    let apiArray = JSON.parse(data.api)
-    if(Array.isArray(apiArray)){
+    if(data.api.includes("[")){
+      let apiArray = JSON.parse(data.api);
       for (let i = 0; i < apiArray.length; i++) {
         templateApiResources +=
         `
@@ -92,7 +91,7 @@ function templateApiResources(data){
       }
       return templateApiResources
     }else{
-      return templateApiResources + data.api;
+      return `${templateApiResources} \n ${data.api}`;
     }
 }
 
@@ -116,11 +115,8 @@ function templateContribute(data){
 
 function templateTests(data){
   let templateTests = "\n ## Tests \n"
-    let testArray = JSON.parse(data.tests)
-      // console.log(JSON.parse(data.tests));
-    if(Array.isArray(JSON.parse(data.tests))){
-      // console.log("templateTests is array");
-      // let testArray = JSON.parse(data.tests)
+    if(data.tests.includes("[")){
+      let testArray = JSON.parse(data.tests)
       for (let i = 0; i < testArray.length; i++) {
         templateTests +=
         `
@@ -131,7 +127,7 @@ function templateTests(data){
     }else{
       // console.log(JSON.parse(data.tests));
       // console.log("templateTests is not array");
-      return templateTests + data.tests;
+      return `${templateTests} \n ${data.tests}`;
     }
 }
 
@@ -141,7 +137,7 @@ function templateLicense(data){
 // TODO: Create a function that returns a license badge based on which license is passed in
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {}
-
+//lice icon
 // TODO: Create a function that returns the license link
 // If there is no license, return an empty string
 function renderLicenseLink(license) {}
@@ -149,7 +145,7 @@ function renderLicenseLink(license) {}
 // TODO: Create a function that returns the license section of README
 // If there is no license, return an empty string
 function renderLicenseSection(license) {}
-
+//text
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
   // //if you use template.js to export data
@@ -158,7 +154,7 @@ function generateMarkdown(data) {
   return `
   ${data.contents.includes("Live_link") ? templateLiveLink(data): ""}
   ${templateHeater(data)}
-  ${templateContents(data)} 
+  ${data.contents.includes("Table_of_Contents")? templateContents(data): ""} 
   ${data.contents.includes("Installation") ? templateInstallation(data): ""}
   ${data.contents.includes("Usage") ? templateUsage(data): ""}
   ${data.contents.includes("Credits") ? templateCredits(data): ""}

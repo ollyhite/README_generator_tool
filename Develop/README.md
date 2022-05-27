@@ -1,21 +1,91 @@
 
   
+    
+ ## Live link 
+ https:google.com
+    
   
     
- # cdhgckjhgsdc 
+ # readme maker 
  ## Description 
- csdcsdcsdcsdcsdcsdcsdcsdcsd
+ want to make readme file more easy.    I want to make earylier to my all project.export and import file proble.learn more codin skill.
     
   
  ## Table of Contents 
 
         
+ - [Live_link](#live_link)
+        
+        
+ - [Table_of_Contents](#table_of_contents)
+        
+        
+ - [Installation](#installation)
+        
+        
+ - [Usage](#usage)
+        
+        
+ - [Credits](#credits)
+        
+        
+ - [Built_With](#built_with)
+        
+        
+ - [Contributers](#contributers)
+        
+        
+ - [API_Resources](#api_resources)
+        
+        
  - [License](#license)
          
   
+ ## Installation 
+``` 
+ git clone  https:google.com 
+ ```
+      
+ - git clone in the file
+      
+      
+ - open terminal
+      
+      
+ - cd your file name
+      
+      
+ - cd in the ream_fen gile
+      
+      
+ - npm I
+      
   
+    
+ ## Usage 
+ ![alt text](./assets/images/test.png)
+    
+  `
+ ## Credits 
+
+        
+ - olly
+        
+        
+ - test1
+        
+        
+ - test2
+        
   
-  
+ ## Built With 
+
+        
+ - js
+        
+        
+ - node,js
+        
   
   
   
