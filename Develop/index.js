@@ -34,7 +34,7 @@ const allQuestions = [
     {
         type:"checkbox",
         message:"Table of Contents - Choose which section you going to put info?",
-        choices:["Installation","Usage","Credits","Built With","Contributers","API Resources","License","Badges","Features","How to Contribute","Tests"],
+        choices:["Installation","Usage","Credits","Built With","Contributers","API Resources","License","Badges","Features","Contributing","Tests"],
         name:'contents'
     },
     {
@@ -74,7 +74,7 @@ const allQuestions = [
     },
     {
         type:"input",
-        message:"How to Contribute - If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer. If you don't need just return blank answer",
+        message:"Contributing - If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer. If you don't need just return blank answer",
         name:'contribute'
     },
     {
@@ -112,14 +112,14 @@ const startQuestions =[
     },
     {
         type:"checkbox",
-        message:"Table of Contents - Choose section(s) you want to put in your README file.",
-        choices:["Live_link", "Table_of_Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+        message:"Info list in README - Choose section(s) you want to put in your README file.",
+        choices:["Live_link", "Table_of_Contents" ,"Installation","Usage","Credits","Built_With","API_Resources","Contributing","License","Badges","Features","Tests"],
         name:'contents'
     },
     // {
     //     type:"checkbox",
     //     message:"List in README file - Choose section(s) you want to put in your README file.",
-    //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+    //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","Contributing","Tests"],
     //     name:'list'
     // },
 ]
@@ -133,7 +133,7 @@ const contentsQuestion ={
     // Table_of_Contents:{
     //     type:"checkbox",
     //     message:"Table of Contents - Choose section(s) you want to put in your README file.",
-    //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","How to Contribute","Tests"],
+    //     choices:["Live_link", "Table of Contents" ,"Installation","Usage","Credits","Built_With","Contributers","API_Resources","License","Badges","Features","Contributing","Tests"],
     //     name:'contents'
     // },
     Installation:
@@ -150,7 +150,7 @@ const contentsQuestion ={
     Usage:
     {
         type:"input",
-        message:"Usage - Provide instructions and examples for use. Include screenshots as needed. To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:",
+        message:"Usage - Provide instructions and examples for use. Include screenshots as needed. To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it.:",
         name:'usage'
     },
     Credits:
@@ -171,6 +171,29 @@ const contentsQuestion ={
         message:"API_Resources - List your API_Resources that you used in your project, put them in array.",
         name:'api'
     },
+    Contributing:
+    {
+        type:"input",
+        message:"Contributing - Larger projects often have sections on contributing to their project, in which contribution instructions are outlined. Sometimes, this is a separate file. If you have specific contribution preferences, explain them so that other developers know how to best contribute to your work.",
+        name:'contributing'
+    },
+    License:[{
+        type:'rawlist',
+        message: "License - The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/].",
+        name:"license",
+        choices:["MIT License - I want it simple and permissive","Apache License 2.0 - Use the license preferred by the community you're contributing to or depending on. Your project will fit right in.","GNU Lesser General Public License - I care about sharing improvements."]
+    },
+    {
+        type:"input",
+        message:"License - The year of your project created",
+        name:'licenseYear'
+    },
+    {
+        type:"input",
+        message:"License - name of copyright owner",
+        name:'licenseName'
+    }
+    ],
     Badges:
     {
         type:"input",
@@ -183,35 +206,12 @@ const contentsQuestion ={
         message:"Features - If your project has a lot of features, list them in array. If you don't need just return blank answer",
         name:'features'
     },
-    Contribute:
-    {
-        type:"input",
-        message:"How to Contribute - If you created an application or package and would like other developers to contribute it, you can include guidelines for how to do so. The [Contributor Covenant](https://www.contributor-covenant.org/) is an industry standard, but you can always write your own if you'd prefer. If you don't need just return blank answer",
-        name:'contribute'
-    },
     Tests:
     {
         type:"input",
         message:"Tests - Go the extra mile and write tests for your application. Then provide examples on how to run them in array. If you don't need just return blank answer",
         name:'tests'
-    },
-    License:[{
-        type:'rawlist',
-        message: "License - The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/].",
-        name:"license",
-        choices:["MIT License - I want it simple and permissive","GNU Lesser General Public License - I care about sharing improvements."]
-    },
-    {
-        type:"input",
-        message:"License - The year of your project create",
-        name:'licenseYear'
-    },
-    {
-        type:"input",
-        message:"License - The year of your project name",
-        name:'licenseName'
     }
-    ]
 }
 
 const startQuestion = () =>{
