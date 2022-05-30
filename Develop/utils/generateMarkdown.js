@@ -83,6 +83,7 @@ function templateLiveLink(data){
 function templateInstallation(data){
   let templateInstallation ="\n ## Installation \n"
     if(data.installation.includes("[")){
+      // let makeStr = String(data.installation)
       let installArray = JSON.parse(data.installation)
       templateInstallation += `\`\`\` \n git clone  ${data.clone} \n \`\`\``;
 
@@ -100,9 +101,7 @@ function templateInstallation(data){
 }
 
 function templateUsage(data){
-    return `
-    \n ## Usage \n ![alt text](${data.usage})
-    `
+    return `\n ## Usage \n ![alt text](${data.usage})`
 }
 
 function templateCredits(data){
@@ -231,8 +230,8 @@ function generateMarkdown(data) {
   ${data.contents.includes("Features") ? templateFeatures(data): ""}
   ${data.contents.includes("Contributing") ? templateContributing(data): ""}
   ${data.contents.includes("Tests") ? templateTests(data): ""}
-  ${data.contents.includes("License") ? renderLicenseSection(data): ""}
   ${templateQuestion(data)}
+  ${data.contents.includes("License") ? renderLicenseSection(data): ""}
   ${data.contents.includes("License") ? renderLicenseLink(data.license): ""}
   `
 }
