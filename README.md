@@ -35,10 +35,6 @@ Before every project done, need to make a README file to put in GitHub, so I wan
 
 https://drive.google.com/file/d/1HaD3vYPm52u89kD9G9U9SUimW-lNblg8/view
 
-## Credits
-
-- [Pei-Yun Hite](https://github.com/ollyhite/)
-
 ## Built With
 
 - js
