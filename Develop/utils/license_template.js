@@ -1,3 +1,4 @@
+// three kid of license text, depends user choose and switch the article
 module.exports = (type, projectName, year, authorName) => {
     console.log(type);
     let response;

@@ -1,7 +1,49 @@
 // //import template.js in here and use module.exports export out
 //const template = require("./template")
+
 const licenseTemplate = require("./license_template");
 
+//** sepeter all each section to return each template
+function templateHeater(data) {
+  return `
+    \n # ${data.projectTitle} \n ${data.contents.includes("License") ? renderLicenseBadge(data.license): ""}\n ${data.contents.includes("Live_link") ? templateLiveLink(data): ""} \n ## Description \n ${data.motivation}${data.descriptionWhy}${data.descriptionProblem}${data.descriptionLearn}
+    `
+}
+function templateQuestion(data){
+  //encodeURIComponent in js function to encode %20(space) in url
+  return `
+    \n ## Author Info & Getting Help 
+    \n * [${data.emailName}'s Github Link](https://github.com/${data.github})
+    \n * Send Qquestions or suggestions for changes to the ${data.projectTitle} project maintainer, [${data.emailName}](mailto:${data.email}?subject=[GitHub]%20${encodeURIComponent(data.projectTitle)}) , for consideration.
+    `
+}
+function templateContents(data){
+  let templateContents= "\n ## Table of Contents \n - [Description](#description)";
+    for (let i = 0; i < data.contents.length; i++) {
+        //Table_of_Contents and Live_link don't need to show in this section
+        if(data.contents[i]=== "Table_of_Contents" || data.contents[i]=== "Live_link"){
+          templateContents += ""
+        }
+        // else if(data.contents[i].includes("_")){
+        //   let p = data.contents[i].replaceAll('_', ' ')
+        //   console.log("new p",p);          
+        //   templateContents +=
+        //   `
+        //   \n - [${p}](${switchContentsLink(data.contents[i])})
+        //   `
+        // }
+        else{
+        //switchContentsLink this funtion to change space to -
+          templateContents +=
+        `
+        \n - [${data.contents[i]}](${switchContentsLink(data.contents[i])})
+        `
+        }
+    }
+    return templateContents;
+}
+
+//switchContentsLink this funtion to change space to - (readme Contents link)
 function switchContentsLink(listName){
   let response;
   switch(listName){
@@ -33,46 +75,6 @@ function switchContentsLink(listName){
   return response;
 }
 
-function templateHeater(data) {
-  return `
-    \n # ${data.projectTitle} \n ${data.contents.includes("License") ? renderLicenseBadge(data.license): ""}\n ${data.contents.includes("Live_link") ? templateLiveLink(data): ""} \n ## Description \n ${data.motivation}${data.descriptionWhy}${data.descriptionProblem}${data.descriptionLearn}
-    `
-}
-function templateQuestion(data){
-  // const encodeUrl=(name)=>{
-  //   let url = encodeURIComponent(name)
-  //   console.log(url);
-  // }
-  return `
-    \n ## Author Info & Getting Help 
-    \n * [${data.emailName}'s Github Link](https://github.com/${data.github})
-    \n * Send Qquestions or suggestions for changes to the ${data.projectTitle} project maintainer, [${data.emailName}](mailto:${data.email}?subject=[GitHub]%20${encodeURIComponent(data.projectTitle)}) , for consideration.
-    `
-}
-function templateContents(data){
-  let templateContents= "\n ## Table of Contents \n - [Description](#description)";
-    for (let i = 0; i < data.contents.length; i++) {
-        // let lowercase = data.contents[i].toLowerCase()
-        if(data.contents[i]=== "Table_of_Contents" || data.contents[i]=== "Live_link"){
-          templateContents += ""
-        }
-        // else if(data.contents[i].includes("_")){
-        //   let p = data.contents[i].replaceAll('_', ' ')
-        //   console.log("new p",p);          
-        //   templateContents +=
-        //   `
-        //   \n - [${p}](${switchContentsLink(data.contents[i])})
-        //   `
-        // }
-        else{
-          templateContents +=
-        `
-        \n - [${data.contents[i]}](${switchContentsLink(data.contents[i])})
-        `
-        }
-    }
-    return templateContents;
-}
 function templateLiveLink(data){
   return `
     \n ## Live link \n [${data.live}](${data.live})
@@ -181,18 +183,12 @@ function templateTests(data){
       }
       return templateTests
     }else{
-      // console.log(JSON.parse(data.tests));
-      // console.log("templateTests is not array");
       return `${templateTests} \n ${data.tests}`;
     }
 }
 
-// function templateLicense(data){
-//   return `\n ${licenseTemplate(data.license, data.licenseYear, data.licenseName)} \n`
-// }
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
+// license badge based on which license is passed in
 function renderLicenseBadge(license) {
   if(license === "MIT License - I want it simple and permissive"){
     return `\n [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
@@ -202,9 +198,7 @@ function renderLicenseBadge(license) {
     return `\n [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)`
   }
 }
-//lice icon
-// TODO: Create a function that returns the license link
-// If there is no license, return an empty string
+// returns the license link
 function renderLicenseLink(license) {
   if(license === "MIT License - I want it simple and permissive"){
     return `\n [https://choosealicense.com/licenses/mit/](https://choosealicense.com/licenses/mit/)`
@@ -215,13 +209,12 @@ function renderLicenseLink(license) {
   }
 }
 
-// TODO: Create a function that returns the license section of README
-// If there is no license, return an empty string
+// returns the license section of README
 function renderLicenseSection(data) {
   return `\n ${licenseTemplate(data.license, data.projectTitle, data.licenseYear, data.licenseName)} \n`
 }
-//text
-// TODO: Create a function to generate markdown for README
+
+//generate markdown for README (depend user choose the optional section)
 function generateMarkdown(data) {
   // //if you use template.js to export data
   // let currentTemplate = template(data);
