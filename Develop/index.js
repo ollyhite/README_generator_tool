@@ -116,6 +116,21 @@ const startQuestions =[
         choices:["Live_link", "Table_of_Contents" ,"Installation","Usage","Credits","Built_With","API_Resources","Contributing","License","Badges","Features","Tests"],
         name:'contents'
     },
+    {
+        type:"input",
+        message: "Questions - What's is your GitHub username" ,
+        name:'github'
+    },
+    {
+        type:"input",
+        message: "Getting Involved - people can reach you with email about question or suggestions, please enter your Eamil address" ,
+        name:'email'
+    },
+    {
+        type:"input",
+        message: "Getting Involved - What's name that you want to people called you?" ,
+        name:'emailName'
+    }
     // {
     //     type:"checkbox",
     //     message:"List in README file - Choose section(s) you want to put in your README file.",
@@ -156,7 +171,7 @@ const contentsQuestion ={
     Credits:
     {
         type:"input",
-        message:"Credits - List your collaborators, if any, with links to their GitHub profiles.If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.If you followed tutorials, include links to those here as well.",
+        message:"Credits - List your collaborators, if any, with links to their GitHub profiles.If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.If you followed tutorials, include links to those here as well. Please enter this format for list [{name: collaborators name, link: collaborators link}].",
         name:'credits'
     },
     Built_With:
@@ -197,19 +212,19 @@ const contentsQuestion ={
     Badges:
     {
         type:"input",
-        message:"Badges - Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time. If you don't need just return blank answer",
+        message:"Badges - Badges aren't necessary, per se, but they demonstrate street cred. Badges let other developers know that you know what you're doing. Check out the badges hosted by [shields.io](https://shields.io/). You may not understand what they all represent now, but you will in time.",
         name:'badges'
     },
     Features:
     {
         type:"input",
-        message:"Features - If your project has a lot of features, list them in array. If you don't need just return blank answer",
+        message:"Features - If your project has a lot of features, list them in array here.",
         name:'features'
     },
     Tests:
     {
         type:"input",
-        message:"Tests - Go the extra mile and write tests for your application. Then provide examples on how to run them in array. If you don't need just return blank answer",
+        message:"Tests - Go the extra mile and write tests for your application. Then provide examples on how to run them in array.",
         name:'tests'
     }
 }

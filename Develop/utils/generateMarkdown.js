@@ -38,6 +38,17 @@ function templateHeater(data) {
     \n # ${data.projectTitle} \n ${data.contents.includes("License") ? renderLicenseBadge(data.license): ""}\n ${data.contents.includes("Live_link") ? templateLiveLink(data): ""} \n ## Description \n ${data.motivation}${data.descriptionWhy}${data.descriptionProblem}${data.descriptionLearn}
     `
 }
+function templateQuestion(data){
+  // const encodeUrl=(name)=>{
+  //   let url = encodeURIComponent(name)
+  //   console.log(url);
+  // }
+  return `
+    \n ## Author Info & Getting Help 
+    \n * [${data.emailName}'s Github Link](https://github.com/${data.github})
+    \n * Send Qquestions or suggestions for changes to the ${data.projectTitle} project maintainer, [${data.emailName}](mailto:${data.email}?subject=[GitHub]%20${encodeURIComponent(data.projectTitle)}) , for consideration.
+    `
+}
 function templateContents(data){
   let templateContents= "\n ## Table of Contents \n - [Description](#description)";
     for (let i = 0; i < data.contents.length; i++) {
@@ -95,11 +106,12 @@ function templateUsage(data){
 function templateCredits(data){
   let templateCredits = "`\n ## Credits \n"
     if(data.credits.includes("[")){
-      let creditsArray = JSON.parse(data.credits);
+      let makeStr = String(data.credits) //need to make fully str or will broken
+      let creditsArray = JSON.parse(makeStr);
       for (let i = 0; i < creditsArray.length; i++) {
         templateCredits +=
         `
-        \n - ${creditsArray[i]}
+        \n - [${creditsArray[i].name}](${creditsArray[i].link})
         `
       }
       return templateCredits
@@ -227,6 +239,7 @@ function generateMarkdown(data) {
   ${data.contents.includes("Contributing") ? templateContributing(data): ""}
   ${data.contents.includes("Tests") ? templateTests(data): ""}
   ${data.contents.includes("License") ? renderLicenseSection(data): ""}
+  ${templateQuestion(data)}
   ${data.contents.includes("License") ? renderLicenseLink(data.license): ""}
   `
 }
