@@ -37,8 +37,8 @@ https://drive.google.com/file/d/1HaD3vYPm52u89kD9G9U9SUimW-lNblg8/view
 
 ## Built With
 
-- js
-- node,js
+- Javascript
+- Node.js
 
 ## API Resources
 
